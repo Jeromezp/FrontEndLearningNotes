@@ -6,7 +6,7 @@ var WINDOW_HEIGHT = 768;
 var RADIUS = 8;
 var MARGIN_TOP = 30;
 var MARGIN_LEFT = 60;
-const endTime = new Date(2016,7,9,0,0,0);
+const endTime = new Date(2016,7,1,0,0,0);
 var curShowTimeSeconds = 0;
 
 window.onload = function(){
@@ -17,9 +17,27 @@ window.onload = function(){
     canvas.width = WINDOW_WIDTH;
     canvas.height = WINDOW_HEIGHT;
     curShowTimeSeconds = getCurShowTimeSeconds();
-    render(context);
+    setInterval(function(){
+        render(context);
+        updateTime();
+    },50);
+
 }
 
+function updateTime(){
+    var nextShowTimeSeconds = getCurShowTimeSeconds();
+    // var nextHours = parseInt(nextShowTimeSeconds/3600);
+    // var nextMinutes = parseInt((nextShowTimeSeconds - nextHours*3600)/60);
+    // var nextSeconds = nextShowTimeSeconds % 60;
+    //
+    // var curHours = parseInt(curShowTimeSeconds/3600);
+    // var curMinutes = parseInt((curShowTimeSeconds - curHours*3600)/60);
+    // var curSeconds = curShowTimeSeconds % 60;
+
+    if(nextShowTimeSeconds != curShowTimeSeconds){
+        curShowTimeSeconds = nextShowTimeSeconds;
+    }
+}
 function getCurShowTimeSeconds(){
     var curTime = new Date();
     var ret = endTime.getTime() - curTime.getTime();
@@ -30,6 +48,7 @@ function getCurShowTimeSeconds(){
 
 function render(cxt){
 
+    cxt.clearRect(0,0,WINDOW_WIDTH,WINDOW_HEIGHT);
     var hours = parseInt(curShowTimeSeconds/3600);
     var minutes = parseInt((curShowTimeSeconds - hours*3600)/60);
     var seconds = curShowTimeSeconds % 60;
