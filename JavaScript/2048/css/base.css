@@ -1,0 +1,68 @@
+*{
+    font-family: "Microsoft YaHei";
+}
+
+header{
+    display: block;
+    width:500px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+header h1{
+    font-size: 60px;
+    font-weight:bold;
+}
+#newGame{
+    display: block;
+    width: 100px;
+    margin: 20px auto;
+    padding: 10px;
+
+    background-color: #8f7a66;
+    color: white;
+    text-decoration: none;
+
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+}
+
+#newGame:hover{
+    background-color: rgba(143, 122, 102, 0.73);
+    color: rgb(255, 223, 190);
+}
+
+header p{
+    width: 100px;
+    margin: 20px auto;
+    text-align: center;
+    color: #6e6e6e;
+    font-size: 20px;
+}
+
+#grid-container{
+    width: 460px;
+    height: 460px;
+    padding: 20px;
+
+    margin: 50px auto;
+    background-color: #bbada0;
+
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    position: relative;
+
+}
+
+.grid-cell{
+    width: 100px;
+    height: 100px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    background-color: #ccc0b3;
+
+    position: absolute;
+}
