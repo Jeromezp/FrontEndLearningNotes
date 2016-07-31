@@ -9,7 +9,9 @@ var MARGIN_LEFT = 60;
 const endTime = new Date(2016, 7, 1, 0, 0, 0);
 var curShowTimeSeconds = 0;
 
+//小球数组
 var balls = [];
+//颜色数组
 const colors = ["#33B5E5", "#0099CC", "#AA66CC", "#9933CC", "#99CC00", "#669900", "#FFBB33", "#FF8800", "#FF4444", "#CC0000"];
 
 window.onload = function () {
@@ -85,26 +87,37 @@ function updateTime() {
  * 跟新小球的运动状态
  */
 function updateBalls() {
-    for (var i = 0; i < balls.length; i++) {
-        balls[i].x += balls[i].vx;
-        balls[i].y += balls[i].vy;
-        balls[i].vy += balls[i].g;
 
-        if (balls[i].y + RADIUS >= WINDOW_HEIGHT) {
-            balls[i].y = WINDOW_HEIGHT - RADIUS;
-            balls[i].vy = -balls[i].vy * 0.75;
+    for( var i = 0 ; i < balls.length ; i ++ ){
+
+        balls[i].x += balls[i].vx;
+
+        var c = 1.0;
+        if( balls[i].y + RADIUS + balls[i].vy >= WINDOW_HEIGHT ){
+            c = ( WINDOW_HEIGHT - (balls[i].y+ RADIUS) ) / balls[i].vy;
+            console.log( c );
+        }
+
+        balls[i].y += balls[i].vy;
+        balls[i].vy += c * balls[i].g;
+
+        if( balls[i].y >= WINDOW_HEIGHT-RADIUS ){
+            balls[i].y = WINDOW_HEIGHT-RADIUS;
+            balls[i].vy = - Math.abs(balls[i].vy)*0.75;
         }
     }
 
+    //性能优化，将离开屏幕的小球从数组中去除
     var cnt = 0;
     for (var i = 0; i < balls.length; i++) {
 
+        //判断小球是否在屏幕内
         if (balls[i].x + RADIUS > 0 && balls[i].x - RADIUS < WINDOW_WIDTH) {
             balls[cnt++] = balls[i];
         }
     }
 
-    while(balls.length > cnt){
+    while(balls.length > Math.min(300,cnt)){
         balls.pop();
     }
 }
