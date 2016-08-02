@@ -66,3 +66,16 @@ header p{
 
     position: absolute;
 }
+
+
+.number-cell{
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+
+    font-size:60px;
+    line-height:100px;
+    text-align: center;
+
+    position: absolute;
+}
