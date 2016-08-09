@@ -19,3 +19,7 @@ function showNumberWithAnimation(x,y,number){
     },50);
 
 }
+
+function showMoveAnimation(){
+    
+}
