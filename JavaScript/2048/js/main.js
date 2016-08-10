@@ -67,7 +67,7 @@ function updateBoardView() {
                     color: getNumberColor(board[i][j]),
                 });
 
-                numberGrid.text(board[x][y]);
+                numberGrid.text(board[i][j]);
             }
 
         }
@@ -96,8 +96,6 @@ function generateNumber() {
     //随机生成一个数字
     var randNum = Math.random() < 0.5 ? 2 : 4;
     board[randX][randY] = randNum;
-    console.log(randNum + '====');
-    console.log(board[randX][randY]);
 
     showNumberWithAnimation(randX, randY, randNum);
 
@@ -136,7 +134,7 @@ $(document).keydown(function (event) {
 });
 
 function isGameOver(){
-    if( nospace( board ) && nomove( board ) ){
+    if( !isVacancy( board ) && canMove( board ) ){
         gameOver();
     }
 }
